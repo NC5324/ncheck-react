@@ -4,7 +4,6 @@ import { connect } from 'react-redux'
 import { selectRoom } from './actions'
 
 const RoomListItemContainer = styled.div`
-  min-height: 130px;
   margin: 5px;
 
   background: ${ props => props.isSelected ? '#203B4E' : '#1D3240' };
@@ -29,8 +28,8 @@ const Thumbnail = styled.div`
   border-radius: 50%;
   background: #A3C8FF;
 
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
   margin: auto 0;
 `
 
@@ -39,7 +38,17 @@ function RoomListItem({ id, onSelect, isSelected }) {
         <RoomListItemContainer  onClick={() => onSelect(id)} isSelected={isSelected(id)}>
             <Thumbnail/>
             <RoomListItemDetails>
-                <h2 className={"opacity-87"}>My room title #{id}</h2>
+                <h3 className={"opacity-87"}>My room title #{id}</h3>
+                <h4 style={{display: 'flex'}}>
+                    <span className={"opacity-60"} style={{marginRight: 10}}>Upcoming: something</span>
+                    <span style={{marginLeft: 'auto', color: '#FF7070', opacity: 1}}>
+                        dd/mm/yyyy
+                    </span>
+                </h4>
+                <h4 className={"opacity-87"} style={{marginTop: 'auto', display: 'flex'}}>
+                    <span style={{marginRight: 10}}>Members:</span>
+                    <span style={{marginLeft: 'auto'}}>NC5324, ed, vitaliy</span>
+                </h4>
             </RoomListItemDetails>
         </RoomListItemContainer>
     )

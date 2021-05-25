@@ -25,7 +25,7 @@ function Room({ title }) {
                 <Button style={{marginLeft: '10px'}}>o o o</Button>
             </header>
             <ItemsWrapper>
-                { Array.from(Array(10)).map(() => <RoomItem/> )}
+                { Array.from(Array(3)).map(() => <RoomItem/> )}
             </ItemsWrapper>
         </div>
     )

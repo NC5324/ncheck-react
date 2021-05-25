@@ -19,7 +19,7 @@ function RoomItem() {
         <RoomItemContainer>
             <h3 className={"opacity-87"}>Item title</h3>
             <h4 className={"opacity-30"}>Created on dd/mm/yyyy by NC5324</h4>
-
+            <h4 style={{marginTop: 'auto', marginBottom: 'auto'}}>Notes lorem ipsum dolor sit amet something</h4>
             <h4 style={{color: '#FF7070', marginTop: 'auto'}}>Deadline: dd/mm/yyyy</h4>
         </RoomItemContainer>
     )

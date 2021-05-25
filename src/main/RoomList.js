@@ -6,7 +6,7 @@ import { addRoom } from './actions'
 import RoomListItem from './RoomListItem'
 
 const RoomListContainer = styled.div`
-  flex: 1 0 30%;
+  flex: 1 0 20%;
   margin: 5px 10px 0 0;
   @media screen and (max-width: 900px) {
     margin: 5px 0 0 0;
@@ -50,6 +50,12 @@ function RoomList({ rooms, onAddPressed }) {
                 ))}
             </RoomsWrapper>
             <div className={"add-button"}
+                 style={{marginTop: 'auto',
+                     borderRadius: 5,
+                     fontWeight: 'bolder',
+                     boxShadow: '#121212 0 0 6px',
+                     cursor: 'pointer'
+                 }}
                  onClick={() => onAddPressed('test')}>
                 <span style={{margin: 'auto'}}>Add new room</span>
             </div>
