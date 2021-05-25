@@ -6,4 +6,11 @@ export const selectRoom = (id) => ({
     }
 })
 
+export const ADD_ROOM = 'ADD_ROOM'
+export const addRoom = (title) => ({
+    type: ADD_ROOM,
+    payload: {
+        title
+    }
+})
 
