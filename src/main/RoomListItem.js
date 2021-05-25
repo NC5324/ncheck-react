@@ -7,7 +7,7 @@ const RoomListItemContainer = styled.div`
   min-height: 130px;
   margin: 5px;
 
-  background: ${ props => props.isSelected ? '#223F53' : '#1D3240' };
+  background: ${ props => props.isSelected ? '#203B4E' : '#1D3240' };
   border-radius: 5px;
   padding: 10px;
   box-shadow: #121212 0 0 6px;

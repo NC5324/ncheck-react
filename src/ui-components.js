@@ -20,7 +20,7 @@ export const ButtonTemplate = styled.button`
 export const Button = styled(ButtonTemplate)`
   background-color: #1D3240;
   :hover {
-    background-color: #223F53;
+    background-color: #203B4E;
   }
 `
 
