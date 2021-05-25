@@ -27,7 +27,7 @@ const Avatar = styled.div`
   height: 50px;
   width: 50px;
   border-radius: 50%;
-  margin: auto 0;
+  margin: auto 5px;
 `
 
 

@@ -14,11 +14,32 @@ const ItemsWrapper = styled.main`
   overflow-y: auto;
 `
 
+const RoomContainer = styled.div`
+  flex: 1 0 50%;
+  margin: 5px 5px 0 0;
+
+  background: #1A2A34;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow: #121212 0 0 6px;
+
+  display: flex;
+  flex-direction: column;
+  
+  @media screen and (max-width: 900px) {
+    display: none;
+    margin: 5px 5px 0 5px;
+  }
+`
+
 function Room({ title }) {
     let { id } = useParams();
     return (
-        <div className={"section2"}>
-            <header>
+        <RoomContainer>
+            <header style={{
+                display: 'flex',
+                marginBottom: 10
+            }}>
                 <h1 className={"opacity-87"}>{ title ? title : `This is room #${id}` }</h1>
                 <AddButton style={{marginLeft: 'auto'}}>ADD</AddButton>
                 <Button style={{marginLeft: '10px'}}>SELECT</Button>
@@ -27,7 +48,7 @@ function Room({ title }) {
             <ItemsWrapper>
                 { Array.from(Array(3)).map(() => <RoomItem/> )}
             </ItemsWrapper>
-        </div>
+        </RoomContainer>
     )
 }
 

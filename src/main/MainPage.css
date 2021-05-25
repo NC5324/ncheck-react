@@ -5,19 +5,6 @@
     margin: auto;
 }
 
-.section2 {
-    flex: 1 0 50%;
-    margin: 5px 0 0;
-
-    background: #1A2A34;
-    border-radius: 5px;
-    padding: 10px;
-    box-shadow: #121212 0 0 6px;
-
-    display: flex;
-    flex-direction: column;
-}
-
 .opacity-87 {
     opacity: 0.87;
 }
@@ -41,14 +28,8 @@
     background: #417341;
 }
 
-/*room*/
-.section2 > header {
-    display: flex;
-    margin-bottom: 10px;
-}
-
 @media screen and (max-width: 900px) {
-    .section2 {
-        display: none;
+    .wrapper {
+        max-width: calc(100% - 10px);
     }
 }
