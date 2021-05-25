@@ -1,6 +1,18 @@
 import { useParams } from 'react-router-dom'
 import { AddButton, Button } from '../ui-components'
 import React from 'react'
+import styled from 'styled-components'
+import RoomItem from './RoomItem'
+
+const ItemsWrapper = styled.main`
+  max-height: 100%;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+`
 
 function Room({ title }) {
     let { id } = useParams();
@@ -12,7 +24,9 @@ function Room({ title }) {
                 <Button style={{marginLeft: '10px'}}>SELECT</Button>
                 <Button style={{marginLeft: '10px'}}>o o o</Button>
             </header>
-            <main style={{backgroundColor: '#203B4E', flex: '1 0 auto'}}/>
+            <ItemsWrapper>
+                { Array.from(Array(10)).map(() => <RoomItem/> )}
+            </ItemsWrapper>
         </div>
     )
 }

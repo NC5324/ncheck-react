@@ -51,6 +51,7 @@ function RoomList({ rooms, onAddPressed }) {
             </RoomsWrapper>
             <div className={"add-button"}
                  onClick={() => onAddPressed('test')}>
+                <span style={{margin: 'auto'}}>Add new room</span>
             </div>
         </RoomListContainer>
     )
