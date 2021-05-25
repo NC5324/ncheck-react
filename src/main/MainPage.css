@@ -1,0 +1,57 @@
+.wrapper {
+    max-width: 1440px;
+    height: 100vh;
+
+    margin: auto;
+}
+
+.section2 {
+    flex: 1 0 50%;
+    margin: 5px 0 0;
+
+    background: #1A2A34;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: #121212 0 0 6px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.opacity-87 {
+    opacity: 0.87;
+}
+
+.opacity-60 {
+    opacity: 0.60;
+}
+
+.opacity-30 {
+    opacity: 0.30;
+}
+
+.add-button {
+    margin-top: 10px;
+    display: flex;
+    background: #467C46;
+    height: 50px;
+}
+
+.add-button:hover {
+    background: #417341;
+}
+
+/*room*/
+.section2 > header {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+@media screen and (max-width: 900px) {
+    .section1 {
+        margin-right: 0;
+    }
+    .section2 {
+        display: none;
+    }
+}
