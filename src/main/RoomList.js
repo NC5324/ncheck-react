@@ -8,6 +8,9 @@ import RoomListItem from './RoomListItem'
 const RoomListContainer = styled.div`
   flex: 1 0 30%;
   margin: 5px 10px 0 0;
+  @media screen and (max-width: 900px) {
+    margin: 5px 0 0 0;
+  }
 
   background: #1A2A34;
   border-radius: 5px;

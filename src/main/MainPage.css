@@ -48,9 +48,6 @@
 }
 
 @media screen and (max-width: 900px) {
-    .section1 {
-        margin-right: 0;
-    }
     .section2 {
         display: none;
     }

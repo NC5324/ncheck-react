@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import React from 'react'
 import LoginForm from './login/LoginForm'
+import { hot } from 'react-hot-loader'
 
 const AppContainer = styled.div`  
   display: flex;
@@ -23,4 +24,4 @@ function App() {
   );
 }
 
-export default App;
+export default hot(module)(App)
