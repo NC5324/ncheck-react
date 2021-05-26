@@ -55,7 +55,7 @@ function RoomListItem({ id, onSelect, isSelected }) {
 }
 
 const mapStateToProps = (state) => ({
-    isSelected: (id) => (state.rooms.find(x => x.id === id).selected)
+    isSelected: (id) => (state.rooms.rooms.find(x => x.id === id).selected)
 })
 
 const mapDispatchToProps = (dispatch) => ({

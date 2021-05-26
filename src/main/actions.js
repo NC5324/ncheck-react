@@ -14,3 +14,39 @@ export const addRoom = (title) => ({
     }
 })
 
+export const ADD_ROOM_ITEM = 'ADD_ROOM_ITEM'
+export const addRoomItem = () => ({
+    type: ADD_ROOM_ITEM
+})
+
+export const BEGIN_SELECTION = 'BEGIN_SELECTION'
+export const beginSelection = () => ({
+    type: BEGIN_SELECTION
+})
+
+export const CANCEL_SELECTION = 'CANCEL_SELECTION'
+export const cancelSelection = () => ({
+    type: CANCEL_SELECTION
+})
+
+export const ADD_TO_SELECTION = 'ADD_TO_SELECTION'
+export const addToSelection = (itemId) => ({
+    type: ADD_TO_SELECTION,
+    payload: {
+        itemId
+    }
+})
+
+export const REMOVE_FROM_SELECTION = 'REMOVE_FROM_SELECTION'
+export const removeFromSelection = (itemId) => ({
+    type: REMOVE_FROM_SELECTION,
+    payload: {
+        itemId
+    }
+})
+
+export const DELETE_SELECTION = 'DELETE_SELECTION'
+export const deleteSelection = () => ({
+    type: DELETE_SELECTION
+})
+

@@ -64,7 +64,7 @@ function RoomList({ rooms, onAddPressed }) {
 }
 
 const mapStateToProps = (state) => ({
-    rooms: state.rooms
+    rooms: state.rooms.rooms
 })
 
 const mapDispatchToProps = (dispatch) => ({

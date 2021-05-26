@@ -15,10 +15,11 @@ const Wrapper = styled.div`
 const AccFooter = styled.div`
   display: flex;
   height: 80px;
-  margin: 10px 0 5px;
+  margin: 10px 5px 5px;
   
   background: #1A2A34;
   border-radius: 5px;
+  box-shadow: #121212 0 0 6px;
   padding: 10px;
 `
 

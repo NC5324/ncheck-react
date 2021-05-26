@@ -3,6 +3,8 @@ import { AddButton, Button } from '../ui-components'
 import React from 'react'
 import styled from 'styled-components'
 import RoomItem from './RoomItem'
+import { connect } from 'react-redux'
+import { addRoomItem } from './actions'
 
 const ItemsWrapper = styled.main`
   max-height: 100%;
@@ -32,7 +34,7 @@ const RoomContainer = styled.div`
   }
 `
 
-function Room({ title }) {
+function Room({ title, room, onAddPressed }) {
     let { id } = useParams();
     return (
         <RoomContainer>
@@ -41,15 +43,24 @@ function Room({ title }) {
                 marginBottom: 10
             }}>
                 <h1 className={"opacity-87"}>{ title ? title : `This is room #${id}` }</h1>
-                <AddButton style={{marginLeft: 'auto'}}>ADD</AddButton>
+                <AddButton style={{marginLeft: 'auto'}}
+                           onClick={() => onAddPressed()}>ADD</AddButton>
                 <Button style={{marginLeft: '10px'}}>SELECT</Button>
                 <Button style={{marginLeft: '10px'}}>o o o</Button>
             </header>
             <ItemsWrapper>
-                { Array.from(Array(3)).map(() => <RoomItem/> )}
+                { room.items.map(item => <RoomItem/>) }
             </ItemsWrapper>
         </RoomContainer>
     )
 }
 
-export default Room
+const mapStateToProps = (state) => ({
+    room: state.rooms.selectedRoom
+})
+
+const mapDispatchToProps = (dispatch) => ({
+    onAddPressed: () => dispatch(addRoomItem())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Room)
