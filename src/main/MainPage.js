@@ -38,10 +38,10 @@ const MainPage = () => {
             <Wrapper>
                 <RoomList/>
                 <Switch>
-                    <Route exact path={"/main"}>
+                    <Route exact path={"/rooms"}>
                         <Room title={"Please select a room"}/>
                     </Route>
-                    <Route exact path={"/main/:id"}>
+                    <Route exact path={"/rooms/:id"}>
                         <Room/>
                     </Route>
                 </Switch>

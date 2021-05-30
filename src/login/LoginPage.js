@@ -1,14 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 import background from '../assets/login.png'
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from "react-router-dom";
 
-import Main from '../main/MainPage'
+import { connect } from 'react-redux'
 
 const LoginFormBackground = styled.div`
   display: flex;
@@ -96,7 +90,7 @@ const Brand = styled.h1`
   font-size: 80px;
 `
 
-const LoginForm = () => {
+const Login = () => {
     return (
         <LoginFormBackground>
             <Brand>NCheck</Brand>
@@ -112,34 +106,26 @@ const LoginForm = () => {
                     <span style={{
                         color: '#A3C8FF'
                     }}>Forgot your password?</span>
-                    <Link to={"/main"}>
-                        <LoginButton type={"submit"}>Login</LoginButton>
-                    </Link>
-                    <span style={{
-                        opacity: 0.30
-                    }}>Need an account? Register
-                    </span>
                 </LoginFormContent>
+                {/*<Link to={"/rooms"}>*/}
+                {/*    <LoginButton onClick={() => window.location.href="/rooms"}>Login</LoginButton>*/}
+                {/*</Link>*/}
+                <span style={{
+                    opacity: 0.30
+                }}>Need an account? Register
+                    </span>
             </LoginFormContainer>
         </LoginFormBackground>
     )
 }
 
-export default function test(){
-    return (
-        <Router>
-            <Switch>
-                <Route exact path="/">
-                    <LoginForm>
-                    </LoginForm>
-                </Route>
-                <Route path="/main">
-                    <Main>
-                    </Main>
-                </Route>
-                <Route path="/dashboard">
-                </Route>
-            </Switch>
-        </Router>
-    )
-}
+
+const mapStateToProps = (state) => ({
+
+})
+
+const mapDispatchToProps = (dispatch) => ({
+
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

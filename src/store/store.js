@@ -4,8 +4,8 @@ import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import { persistReducer } from 'redux-persist'
-import { rooms } from './main/reducers'
-import { user } from './login/reducers'
+import { rooms } from '../main/reducers'
+import { user } from '../login/reducers'
 
 const reducers = {
     rooms,

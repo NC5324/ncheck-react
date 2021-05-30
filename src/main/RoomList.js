@@ -41,13 +41,13 @@ function RoomList({ rooms, onAddPressed }) {
         <RoomListContainer>
             <Heading>My rooms</Heading>
             <RoomsWrapper>
-                { rooms.map(room => (
-                    <Link to={`/main/${room.id}`}
-                          style={{textDecoration: 'none'}}
-                          key={`room-${room.id}`}>
-                        <RoomListItem id={room.id}/>
-                    </Link>
-                ))}
+                {/*{ rooms.map(room => (*/}
+                {/*    <Link to={`/main/${room.id}`}*/}
+                {/*          style={{textDecoration: 'none'}}*/}
+                {/*          key={`room-${room.id}`}>*/}
+                {/*        <RoomListItem id={room.id}/>*/}
+                {/*    </Link>*/}
+                {/*))}*/}
             </RoomsWrapper>
             <div className={"add-button"}
                  style={{marginTop: 'auto',
