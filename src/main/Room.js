@@ -1,10 +1,10 @@
 import { useParams } from 'react-router-dom'
-import { AddButton, Button } from '../ui-components'
+import { AddButton, Button, CancelButton } from '../ui-components'
 import React from 'react'
 import styled from 'styled-components'
 import RoomItem from './RoomItem'
 import { connect } from 'react-redux'
-import { addRoomItem } from './actions'
+import { addRoomItem, addToSelection, beginSelection, cancelSelection } from './actions'
 
 const ItemsWrapper = styled.main`
   max-height: 100%;
@@ -34,7 +34,17 @@ const RoomContainer = styled.div`
   }
 `
 
-function Room({ title, room, onAddPressed }) {
+const SelectionBar = styled.div`
+  min-height: 50px;
+  margin: auto 5px 5px;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: #121212 0 0 6px;
+  background-color: #1D3240;
+  display: ${props => props.selectionOngoing ? 'flex' : 'none'}
+`
+
+function Room({ title, room, onAddPressed, onSelectPressed, selectionOngoing, onSelectionAdded, selectionLength, onSelectionCancel }) {
     let { id } = useParams();
     return (
         <RoomContainer>
@@ -45,22 +55,37 @@ function Room({ title, room, onAddPressed }) {
                 <h1 className={"opacity-87"}>{ title ? title : `This is room #${id}` }</h1>
                 <AddButton style={{marginLeft: 'auto'}}
                            onClick={() => onAddPressed()}>ADD</AddButton>
-                <Button style={{marginLeft: '10px'}}>SELECT</Button>
+                <Button style={{marginLeft: '10px'}}
+                        onClick={() => onSelectPressed()}>SELECT</Button>
                 <Button style={{marginLeft: '10px'}}>o o o</Button>
             </header>
             <ItemsWrapper>
-                { room.items.map(item => <RoomItem/>) }
+                { room.items.map(item =>
+                    <RoomItem key={`item-${item.id}`}
+                              id={item.id}
+                              onSelect={onSelectionAdded}
+                    />)
+                }
             </ItemsWrapper>
+            <SelectionBar selectionOngoing={selectionOngoing}>
+                <span style={{margin: 'auto 0', fontWeight: 'bolder'}}>{ selectionLength } items selected</span>
+                <CancelButton style={{marginLeft: 'auto'}} onClick={onSelectionCancel}>Cancel</CancelButton>
+            </SelectionBar>
         </RoomContainer>
     )
 }
 
 const mapStateToProps = (state) => ({
-    room: state.rooms.selectedRoom
+    room: state.rooms.selectedRoom,
+    selectionLength: state.rooms.selectedRoom.selectedItems.length,
+    selectionOngoing: state.rooms.selectedRoom.selectionOngoing
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    onAddPressed: () => dispatch(addRoomItem())
+    onAddPressed: () => dispatch(addRoomItem()),
+    onSelectPressed: () => dispatch(beginSelection()),
+    onSelectionAdded: (id) => dispatch(addToSelection(id)),
+    onSelectionCancel: () => dispatch(cancelSelection())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Room)

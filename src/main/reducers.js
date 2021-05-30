@@ -37,7 +37,9 @@ export const rooms = (state = initialState, action) => {
                 id: state.rooms.length,
                 title,
                 selected: false,
-                items: []
+                items: [],
+                selectedItems: [],
+                selectionOngoing: false
             }
             return {
                 ...state,
@@ -60,15 +62,6 @@ export const rooms = (state = initialState, action) => {
                 selectedRoom: updatedRoom
             }
         }
-        default: {
-            return state
-        }
-    }
-}
-
-export const selectedRoom = (state = initialState, action) => {
-    const { type, payload } = action
-    switch(type){
         case BEGIN_SELECTION: {
             return {
                 ...state,
@@ -102,24 +95,33 @@ export const selectedRoom = (state = initialState, action) => {
             }
         }
         case ADD_TO_SELECTION: {
-            const { id }  = payload
-            const newSelected = state.rooms.find(x => x.id === id)
+            const { itemId }  = payload
+            const newSelected = state.selectedRoom.items.find(x => x.id === Number(itemId))
+
+            if(!state.selectedRoom.selectionOngoing
+                || state.selectedRoom.selectedItems.includes(newSelected))
+                return state
+
+            const updatedRoom = {
+                ...state.selectedRoom,
+                selectedItems: state.selectedRoom.selectedItems.concat(newSelected)
+            }
             return {
                 ...state,
-                selectedRoom: {
-                    ...state.selectedRoom,
-                    selectedItems: state.selectedRoom.selectedItems.concat(newSelected)
-                }
+                rooms: state.rooms.map(r => r.id === state.selectedRoom.id ? updatedRoom : r),
+                selectedRoom: updatedRoom
             }
         }
         case REMOVE_FROM_SELECTION: {
-            const { id }  = payload
+            const { itemId }  = payload
+            const updatedRoom = {
+                ...state.selectedRoom,
+                selectedItems: state.selectedRoom.selectedItems.filter(item => item.id !== Number(itemId))
+            }
             return {
                 ...state,
-                selectedRoom: {
-                    ...state.selectedRoom,
-                    selectedItems: state.selectedRoom.selectedItems.filter(x => x.id !== id)
-                }
+                rooms: state.rooms.map(room => room.id === updatedRoom.id  ? updatedRoom : room),
+                selectedRoom: updatedRoom
             }
         }
         default: {

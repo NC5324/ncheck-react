@@ -30,3 +30,10 @@ export const AddButton = styled(ButtonTemplate)`
     background-color: #417341;
   };
 `
+
+export const CancelButton = styled(ButtonTemplate)`
+  background-color: darkred;
+  :hover {
+    background-color: red;
+  }
+`
