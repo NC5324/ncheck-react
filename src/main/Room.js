@@ -52,7 +52,7 @@ function Room({ title, room, onAddPressed, onSelectPressed, selectionOngoing, on
                 display: 'flex',
                 marginBottom: 10
             }}>
-                <h1 className={"opacity-87"}>{ title ? title : `This is room #${id}` }</h1>
+                <h1 className={"opacity-87"}>{ title ? title : room.name }</h1>
                 <AddButton style={{marginLeft: 'auto'}}
                            onClick={() => onAddPressed()}>ADD</AddButton>
                 <Button style={{marginLeft: '10px'}}
@@ -62,8 +62,8 @@ function Room({ title, room, onAddPressed, onSelectPressed, selectionOngoing, on
             <ItemsWrapper>
                 { room.items.map(item =>
                     <RoomItem key={`item-${item.id}`}
-                              id={item.id}
                               onSelect={onSelectionAdded}
+                              item={item}
                     />)
                 }
             </ItemsWrapper>

@@ -16,12 +16,14 @@ export const loadRooms = (userId) => async(dispatch, getState) => {
             }
         })
         let rooms = await response.json()
-        console.log(rooms)
         rooms = rooms.map(room => new Room(room.id, room.name, room.items))
-        console.log(rooms)
         dispatch(loadingRoomsSuccess(rooms))
     } catch(err) {
         dispatch(loadingRoomsFailure())
         alert(err)
     }
+}
+
+export const createRoom = (room) => (dispatch, getState) => {
+
 }

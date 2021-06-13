@@ -57,7 +57,7 @@ function RoomList({ rooms, onAddPressed, startLoadingRooms, loadingRooms }) {
                     <Link to={`/rooms/${room.id}`}
                           style={{textDecoration: 'none'}}
                           key={`room-${room.id}`}>
-                        <RoomListItem id={room.id}/>
+                        <RoomListItem room={room}/>
                     </Link>
                 ))}
             </RoomsWrapper>

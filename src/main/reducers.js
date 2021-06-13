@@ -11,9 +11,9 @@ import {
 import Room from '../payload/Room'
 
 const initialState = {
-    rooms: Array.of(Room),
+    rooms: [],
     loadingRooms: false,
-    selectedRoom: new Room()
+    selectedRoom: new Room(null, null, [])
 }
 
 export const rooms = (state = initialState, action) => {

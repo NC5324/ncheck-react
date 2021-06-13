@@ -33,12 +33,12 @@ const Thumbnail = styled.div`
   margin: auto 0;
 `
 
-function RoomListItem({ id, onSelect, isSelected }) {
+function RoomListItem({ room, onSelect, isSelected }) {
     return (
-        <RoomListItemContainer  onClick={() => onSelect(id)} isSelected={isSelected(id)}>
+        <RoomListItemContainer  onClick={() => onSelect(room.id)} isSelected={isSelected(room.id)}>
             <Thumbnail/>
             <RoomListItemDetails>
-                <h3 className={"opacity-87"}>My room title #{id}</h3>
+                <h3 className={"opacity-87"}>{room.name}</h3>
                 <h4 style={{display: 'flex'}}>
                     <span className={"opacity-60"} style={{marginRight: 10}}>Upcoming: something</span>
                     <span style={{marginLeft: 'auto', color: '#FF7070', opacity: 1}}>
