@@ -1,7 +1,10 @@
 import styled from 'styled-components'
 import React from 'react'
 import { hot } from 'react-hot-loader'
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom'
+import { Switch, Route, Redirect } from 'react-router-dom'
+import Login from './login/LoginPage'
+import Main from './main/MainPage'
+import { connect } from 'react-redux'
 
 const AppContainer = styled.div`  
   display: flex;
@@ -14,41 +17,27 @@ const AppContainer = styled.div`
   color: white;
 `
 
-function App() {
+function App({ loggedIn }) {
   return (
-      <div>
-
-      </div>
-      // <AppContainer>
-      //     {/*<Router>*/}
-      //     {/*    <div>*/}
-      //     {/*        <ul>*/}
-      //     {/*            <li>*/}
-      //     {/*                <Link to="/home">Home</Link>*/}
-      //     {/*            </li>*/}
-      //     {/*            <li>*/}
-      //     {/*                <Link to="/about">About</Link>*/}
-      //     {/*            </li>*/}
-      //     {/*            <li>*/}
-      //     {/*                <Link to="/dashboard">Dashboard</Link>*/}
-      //     {/*            </li>*/}
-      //     {/*        </ul>*/}
-      //     {/*        /!*<Switch>*!/*/}
-      //     {/*        /!*    <Route exact path="/home">*!/*/}
-      //     {/*        /!*        <Login>*!/*/}
-      //     {/*        /!*        </Login>*!/*/}
-      //     {/*        /!*    </Route>*!/*/}
-      //     {/*        /!*    <Route path="/rooms">*!/*/}
-      //     {/*        /!*        <Main>*!/*/}
-      //     {/*        /!*        </Main>*!/*/}
-      //     {/*        /!*    </Route>*!/*/}
-      //     {/*        /!*    <Route path="/dashboard">*!/*/}
-      //     {/*        /!*    </Route>*!/*/}
-      //     {/*        /!*</Switch>*!/*/}
-      //     {/*    </div>*/}
-      //     {/*</Router>*/}
-      // </AppContainer>
+      <AppContainer>
+          <Switch>
+              <Route exact path="/">
+                  { loggedIn ? <Redirect to={"/rooms"}/> : <Login/>}
+              </Route>
+              <Route path="/rooms">
+                  { loggedIn ? <Main/> : <Redirect to={"/"}/> }
+              </Route>
+          </Switch>
+      </AppContainer>
   );
 }
 
-export default hot(module)(App)
+const mapStateToProps = (state) => ({
+    loggedIn: state.user.success,
+})
+
+const mapDispatchToProps = (dispatch) => ({
+
+})
+
+export default hot(module)(connect(mapStateToProps, mapDispatchToProps)(App))

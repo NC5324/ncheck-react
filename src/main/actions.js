@@ -50,3 +50,21 @@ export const deleteSelection = () => ({
     type: DELETE_SELECTION
 })
 
+export const LOADING_ROOMS = 'LOADING_ROOMS'
+export const loadingRooms = () => ({
+    type: LOADING_ROOMS
+})
+
+export const LOADING_ROOMS_SUCCESS = 'LOADING_ROOMS_SUCCESS'
+export const loadingRoomsSuccess = (rooms) => ({
+    type: LOADING_ROOMS_SUCCESS,
+    payload: {
+        rooms
+    }
+})
+
+export const LOADING_ROOMS_FAILURE = 'LOADING_ROOMS_FAILURE'
+export const loadingRoomsFailure = () => ({
+    type: LOADING_ROOMS_FAILURE
+})
+

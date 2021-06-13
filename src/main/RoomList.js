@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { addRoom } from './actions'
 import RoomListItem from './RoomListItem'
+import { loadRooms } from './thunks'
 
 const RoomListContainer = styled.div`
   flex: 1 0 20%;
@@ -36,18 +37,29 @@ const RoomsWrapper = styled.div`
   overflow-y: auto;
 `
 
-function RoomList({ rooms, onAddPressed }) {
-    return (
+function RoomList({ rooms, onAddPressed, startLoadingRooms, loadingRooms }) {
+    useEffect(() => {
+        startLoadingRooms(5)
+    }, [])
+
+    const loadingMessage = (
+        <div style={{
+            color: 'white' }}>
+            Loading TODOS...
+        </div>
+    )
+
+    const content = (
         <RoomListContainer>
             <Heading>My rooms</Heading>
             <RoomsWrapper>
-                {/*{ rooms.map(room => (*/}
-                {/*    <Link to={`/main/${room.id}`}*/}
-                {/*          style={{textDecoration: 'none'}}*/}
-                {/*          key={`room-${room.id}`}>*/}
-                {/*        <RoomListItem id={room.id}/>*/}
-                {/*    </Link>*/}
-                {/*))}*/}
+                { rooms.map(room => (
+                    <Link to={`/rooms/${room.id}`}
+                          style={{textDecoration: 'none'}}
+                          key={`room-${room.id}`}>
+                        <RoomListItem id={room.id}/>
+                    </Link>
+                ))}
             </RoomsWrapper>
             <div className={"add-button"}
                  style={{marginTop: 'auto',
@@ -61,14 +73,17 @@ function RoomList({ rooms, onAddPressed }) {
             </div>
         </RoomListContainer>
     )
+    return loadingRooms ? loadingMessage : content
 }
 
 const mapStateToProps = (state) => ({
-    rooms: state.rooms.rooms
+    rooms: state.rooms.rooms,
+    loadingRooms: state.rooms.loadingRooms
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    onAddPressed: title => dispatch(addRoom(title))
+    onAddPressed: title => dispatch(addRoom(title)),
+    startLoadingRooms: userId => dispatch(loadRooms(userId)),
 })
 
 

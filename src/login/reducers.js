@@ -8,7 +8,6 @@ const initialState = {
     jwt: null,
     username: null,
     success: null,
-    message: null,
     loading: false,
 }
 
@@ -32,12 +31,10 @@ export const user = (state = initialState, action) => {
             }
         }
         case LOGIN_FAILURE: {
-            const { message } = payload
             return {
                 ...state,
                 loading: false,
-                success: false,
-                message: message
+                success: false
             }
         }
         default: {

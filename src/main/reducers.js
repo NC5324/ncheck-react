@@ -6,21 +6,39 @@ import {
     CANCEL_SELECTION,
     ADD_TO_SELECTION,
     REMOVE_FROM_SELECTION,
-    DELETE_SELECTION
+    DELETE_SELECTION, LOADING_ROOMS, LOADING_ROOMS_SUCCESS, LOADING_ROOMS_FAILURE
 } from './actions'
+import Room from '../payload/Room'
 
 const initialState = {
-    rooms: [],
-    selectedRoom: {
-        items: [],
-        selectedItems: [],
-        selectionOngoing: []
-    }
+    rooms: Array.of(Room),
+    loadingRooms: false,
+    selectedRoom: new Room()
 }
 
 export const rooms = (state = initialState, action) => {
     const { type, payload } = action
     switch (type) {
+        case LOADING_ROOMS: {
+            return {
+                ...state,
+                loadingRooms: true
+            }
+        }
+        case LOADING_ROOMS_SUCCESS: {
+            const { rooms } = payload
+            return {
+                ...state,
+                rooms: rooms,
+                loadingRooms: false,
+            }
+        }
+        case LOADING_ROOMS_FAILURE: {
+            return {
+                ...state,
+                loadingRooms: false
+            }
+        }
         case SELECT_ROOM: {
             const { id } = payload
             const newData = state.rooms.map(x => x.id === id ?
@@ -33,14 +51,9 @@ export const rooms = (state = initialState, action) => {
         }
         case ADD_ROOM: {
             const { title } = payload
-            const newRoom = {
-                id: state.rooms.length,
-                title,
-                selected: false,
-                items: [],
-                selectedItems: [],
-                selectionOngoing: false
-            }
+            // The ID of the new room is rooms.length for testing purposes.
+            // Logic for creating a new Room should be moved into a thunk that uses the backend API.
+            const newRoom = new Room(state.rooms.length,title)
             return {
                 ...state,
                 rooms: state.rooms.concat(newRoom)
@@ -74,6 +87,11 @@ export const rooms = (state = initialState, action) => {
         case CANCEL_SELECTION: {
             return {
                 ...state,
+                rooms: state.rooms.map(room => ({
+                    ...room,
+                    selectedItems: [],
+                    selectionOngoing: false
+                })),
                 selectedRoom: {
                     ...state.selectedRoom,
                     selectedItems: [],
