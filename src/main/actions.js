@@ -24,9 +24,22 @@ export const creatingRoomFailure = () => ({
     type: CREATING_ROOM_FAILURE
 })
 
-export const ADD_ROOM_ITEM = 'ADD_ROOM_ITEM'
-export const addRoomItem = () => ({
-    type: ADD_ROOM_ITEM
+export const CREATING_ITEM = 'CREATING_ITEM'
+export const creatingItem = () => ({
+    type: CREATING_ITEM
+})
+
+export const CREATING_ITEM_SUCCESS = 'CREATING_ITEM_SUCCESS'
+export const creatingItemSuccess = (item) => ({
+    type: CREATING_ITEM_SUCCESS,
+    payload: {
+        item
+    }
+})
+
+export const CREATING_ITEM_FAILURE = 'CREATING_ITEM_FAILURE'
+export const creatingItemFailure = () => ({
+    type: CREATING_ITEM_FAILURE
 })
 
 export const BEGIN_SELECTION = 'BEGIN_SELECTION'

@@ -8,7 +8,13 @@ import {
     CANCEL_SELECTION,
     ADD_TO_SELECTION,
     REMOVE_FROM_SELECTION,
-    DELETE_SELECTION, LOADING_ROOMS, LOADING_ROOMS_SUCCESS, LOADING_ROOMS_FAILURE
+    DELETE_SELECTION,
+    LOADING_ROOMS,
+    LOADING_ROOMS_SUCCESS,
+    LOADING_ROOMS_FAILURE,
+    CREATING_ITEM,
+    CREATING_ITEM_SUCCESS,
+    CREATING_ITEM_FAILURE
 } from './actions'
 import Room from '../payload/Room'
 
@@ -16,6 +22,7 @@ const initialState = {
     rooms: [],
     loadingRooms: false,
     creatingRoom: false,
+    creatingItem: false,
     selectedRoom: new Room(null, null, [])
 }
 
@@ -72,20 +79,30 @@ export const rooms = (state = initialState, action) => {
                 creatingRoom: false
             }
         }
-        case ADD_ROOM_ITEM: {
-            let updatedRoom = state.selectedRoom
-            const newItem = {
-                id: updatedRoom.items.length,
-                title: 'test item'
+        case CREATING_ITEM: {
+            return {
+                ...state,
+                creatingItem: true
             }
+        }
+        case CREATING_ITEM_SUCCESS: {
+            const { item } = payload
+            let updatedRoom = state.selectedRoom
             updatedRoom = {
                 ...updatedRoom,
-                items: updatedRoom.items.concat(newItem)
+                items: updatedRoom.items.concat(item)
             }
             return {
                 ...state,
+                creatingItem: false,
                 rooms: state.rooms.map(x => x.id === updatedRoom.id ? updatedRoom : x),
                 selectedRoom: updatedRoom
+            }
+        }
+        case CREATING_ITEM_FAILURE: {
+            return {
+                ...state,
+                creatingItem: false
             }
         }
         case BEGIN_SELECTION: {

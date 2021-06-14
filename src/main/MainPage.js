@@ -6,6 +6,7 @@ import Room from './Room'
 import { Button } from '../ui-components'
 import './MainPage.css'
 import NewRoomForm from './NewRoomForm'
+import NewItemForm from './NewItemForm'
 
 const Wrapper = styled.div`
   display: flex;
@@ -52,6 +53,7 @@ const MainPage = () => {
                 <Button style={{marginLeft: 'auto'}}>SETTINGS</Button>
             </AccFooter>
             <NewRoomForm/>
+            <NewItemForm/>
         </div>
     )
 }

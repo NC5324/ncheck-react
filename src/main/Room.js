@@ -4,7 +4,7 @@ import React from 'react'
 import styled from 'styled-components'
 import RoomItem from './RoomItem'
 import { connect } from 'react-redux'
-import { addRoomItem, addToSelection, beginSelection, cancelSelection } from './actions'
+import { addToSelection, beginSelection, cancelSelection, creatingItem } from './actions'
 
 const ItemsWrapper = styled.main`
   max-height: 100%;
@@ -82,7 +82,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    onAddPressed: () => dispatch(addRoomItem()),
+    onAddPressed: () => dispatch(creatingItem()),
     onSelectPressed: () => dispatch(beginSelection()),
     onSelectionAdded: (id) => dispatch(addToSelection(id)),
     onSelectionCancel: () => dispatch(cancelSelection())
