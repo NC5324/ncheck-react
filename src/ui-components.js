@@ -37,3 +37,22 @@ export const CancelButton = styled(ButtonTemplate)`
     background-color: red;
   }
 `
+
+export const Input = styled.input`
+  padding: 15px;
+  margin-bottom: 10px;
+  
+  outline: #A3C8FF;
+  border: none;
+  border-radius: 5px;
+
+  font-size: 16px;
+
+  background: #171F25;
+  color: white;
+`
+
+export const InputLabel = styled.label`
+  margin-bottom: 5px;
+  opacity: 0.87;
+`

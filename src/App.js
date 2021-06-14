@@ -15,6 +15,8 @@ const AppContainer = styled.div`
   
   background: #171F25;
   color: white;
+  
+  position: relative;
 `
 
 function App({ loggedIn }) {

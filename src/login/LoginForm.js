@@ -5,6 +5,8 @@ import { useHistory } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { login } from './thunks'
 
+import { Input, InputLabel } from '../ui-components'
+
 const LoginFormContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -30,25 +32,6 @@ const LoginFormContent = styled.form`
   padding: 40px 0 0 0;
   background: url(${background}) no-repeat right top;
   background-size: contain;
-`
-
-const Label = styled.label`
-  margin-bottom: 5px;
-  opacity: 0.87;
-`
-
-const Input = styled.input`
-  padding: 15px;
-  margin-bottom: 10px;
-  
-  outline: #A3C8FF;
-  border: none;
-  border-radius: 5px;
-
-  font-size: 16px;
-
-  background: #171F25;
-  color: white;
 `
 
 const LoginButton = styled.button`
@@ -79,12 +62,12 @@ const Login = ({ onLoginPressed, loginSuccess }) => {
                 <h1 style={{
                     marginBottom: 20
                 }}>Welcome back!</h1>
-                <Label htmlFor={"in-username"}>Username</Label>
+                <InputLabel htmlFor={"in-username"}>Username</InputLabel>
                 <Input id={"in-username"}
                        onChange={(ev) => {
                            setUsername(ev.currentTarget.value)
                        }}/>
-                <Label htmlFor={"in-password"}>Password</Label>
+                <InputLabel htmlFor={"in-password"}>Password</InputLabel>
                 <Input type={"password"}
                        id={"in-password"}
                        onChange={(ev) => {

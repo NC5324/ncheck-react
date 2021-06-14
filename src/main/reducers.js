@@ -1,5 +1,7 @@
 import {
-    ADD_ROOM,
+    CREATING_ROOM,
+    CREATING_ROOM_SUCCESS,
+    CREATING_ROOM_FAILURE,
     ADD_ROOM_ITEM,
     SELECT_ROOM,
     BEGIN_SELECTION,
@@ -13,6 +15,7 @@ import Room from '../payload/Room'
 const initialState = {
     rooms: [],
     loadingRooms: false,
+    creatingRoom: false,
     selectedRoom: new Room(null, null, [])
 }
 
@@ -49,14 +52,24 @@ export const rooms = (state = initialState, action) => {
                 selectedRoom: newData.find(x => x.selected === true)
             }
         }
-        case ADD_ROOM: {
-            const { title } = payload
-            // The ID of the new room is rooms.length for testing purposes.
-            // Logic for creating a new Room should be moved into a thunk that uses the backend API.
-            const newRoom = new Room(state.rooms.length,title)
+        case CREATING_ROOM: {
             return {
                 ...state,
-                rooms: state.rooms.concat(newRoom)
+                creatingRoom: true
+            }
+        }
+        case CREATING_ROOM_SUCCESS: {
+            const { room } = payload
+            return {
+                ...state,
+                creatingRoom: false,
+                rooms: state.rooms.concat(room)
+            }
+        }
+        case CREATING_ROOM_FAILURE: {
+            return {
+                ...state,
+                creatingRoom: false
             }
         }
         case ADD_ROOM_ITEM: {

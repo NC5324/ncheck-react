@@ -6,12 +6,22 @@ export const selectRoom = (id) => ({
     }
 })
 
-export const ADD_ROOM = 'ADD_ROOM'
-export const addRoom = (title) => ({
-    type: ADD_ROOM,
+export const CREATING_ROOM = 'CREATING_ROOM'
+export const creatingRoom = () => ({
+    type: CREATING_ROOM
+})
+
+export const CREATING_ROOM_SUCCESS = 'CREATING_ROOM_SUCCESS'
+export const creatingRoomSuccess = (room) => ({
+    type: CREATING_ROOM_SUCCESS,
     payload: {
-        title
+        room
     }
+})
+
+export const CREATING_ROOM_FAILURE = 'CREATING_ROOM_FAILURE'
+export const creatingRoomFailure = () => ({
+    type: CREATING_ROOM_FAILURE
 })
 
 export const ADD_ROOM_ITEM = 'ADD_ROOM_ITEM'

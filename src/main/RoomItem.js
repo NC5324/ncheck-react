@@ -15,7 +15,6 @@ const RoomItemContainer = styled.div`
 `
 
 function RoomItem({item, onSelect}) {
-    console.log("Item", item)
     return (
         <RoomItemContainer onClick={() => onSelect(item.id)}>
             <h3 className={"opacity-87"}>{item.name}</h3>

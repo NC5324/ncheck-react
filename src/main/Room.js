@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+// import { useParams } from 'react-router-dom'
 import { AddButton, Button, CancelButton } from '../ui-components'
 import React from 'react'
 import styled from 'styled-components'
@@ -45,7 +45,7 @@ const SelectionBar = styled.div`
 `
 
 function Room({ title, room, onAddPressed, onSelectPressed, selectionOngoing, onSelectionAdded, selectionLength, onSelectionCancel }) {
-    let { id } = useParams();
+    // let { id } = useParams();
     return (
         <RoomContainer>
             <header style={{

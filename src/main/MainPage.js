@@ -5,7 +5,7 @@ import RoomList from './RoomList'
 import Room from './Room'
 import { Button } from '../ui-components'
 import './MainPage.css'
-
+import NewRoomForm from './NewRoomForm'
 
 const Wrapper = styled.div`
   display: flex;
@@ -51,6 +51,7 @@ const MainPage = () => {
                 <h3 style={{margin: 'auto 10px'}}>NC5324</h3>
                 <Button style={{marginLeft: 'auto'}}>SETTINGS</Button>
             </AccFooter>
+            <NewRoomForm/>
         </div>
     )
 }

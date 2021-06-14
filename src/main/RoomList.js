@@ -2,9 +2,9 @@ import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
-import { addRoom } from './actions'
 import RoomListItem from './RoomListItem'
 import { loadRooms } from './thunks'
+import { creatingRoom } from './actions'
 
 const RoomListContainer = styled.div`
   flex: 1 0 20%;
@@ -37,7 +37,7 @@ const RoomsWrapper = styled.div`
   overflow-y: auto;
 `
 
-function RoomList({ rooms, onAddPressed, startLoadingRooms, loadingRooms }) {
+function RoomList({ rooms, startLoadingRooms, loadingRooms, onAddPressed }) {
     useEffect(() => {
         startLoadingRooms(5)
     }, [])
@@ -68,7 +68,7 @@ function RoomList({ rooms, onAddPressed, startLoadingRooms, loadingRooms }) {
                      boxShadow: '#121212 0 0 6px',
                      cursor: 'pointer'
                  }}
-                 onClick={() => onAddPressed('test')}>
+                 onClick={() => onAddPressed()}>
                 <span style={{margin: 'auto'}}>Add new room</span>
             </div>
         </RoomListContainer>
@@ -82,8 +82,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    onAddPressed: title => dispatch(addRoom(title)),
     startLoadingRooms: userId => dispatch(loadRooms(userId)),
+    onAddPressed: () => dispatch(creatingRoom())
 })
 
 
