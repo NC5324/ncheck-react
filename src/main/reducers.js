@@ -17,14 +17,9 @@ import {
     CREATING_ITEM_FAILURE
 } from './actions'
 import Room from '../payload/Room'
+import RoomsState from '../store/RoomsState'
 
-const initialState = {
-    rooms: [],
-    loadingRooms: false,
-    creatingRoom: false,
-    creatingItem: false,
-    selectedRoom: new Room(null, null, [])
-}
+const initialState = new RoomsState()
 
 export const rooms = (state = initialState, action) => {
     const { type, payload } = action
@@ -51,6 +46,7 @@ export const rooms = (state = initialState, action) => {
         }
         case SELECT_ROOM: {
             const { id } = payload
+
             const newData = state.rooms.map(x => x.id === id ?
                 { ...x, selected: true } : { ...x, selected: false })
             return {
@@ -110,7 +106,7 @@ export const rooms = (state = initialState, action) => {
                 ...state,
                 selectedRoom: {
                     ...state.selectedRoom,
-                    selectionOngoing: true
+                    selectingItems: true
                 }
             }
         }
@@ -119,22 +115,23 @@ export const rooms = (state = initialState, action) => {
                 ...state,
                 rooms: state.rooms.map(room => ({
                     ...room,
-                    selectedItems: [],
-                    selectionOngoing: false
+                    selectingItems: false,
+                    selectedItems: []
                 })),
                 selectedRoom: {
                     ...state.selectedRoom,
-                    selectedItems: [],
-                    selectionOngoing: false
+                    selectingItems: false,
+                    selectedItems: []
                 }
             }
         }
         case DELETE_SELECTION: {
+            const { deletedItems } = payload
             const updatedRoom = {
                 ...state.selectedRoom,
-                items: state.selectedRoom.items.filter(x => !state.selectedRoom.selectedItems.includes(x)),
+                selectingItems: false,
                 selectedItems: [],
-                selectionOngoing: false
+                items: state.selectedRoom.items.filter(x => !deletedItems.includes(x))
             }
             return {
                 ...state,
@@ -146,7 +143,7 @@ export const rooms = (state = initialState, action) => {
             const { itemId }  = payload
             const newSelected = state.selectedRoom.items.find(x => x.id === Number(itemId))
 
-            if(!state.selectedRoom.selectionOngoing
+            if(!state.selectedRoom.selectingItems
                 || state.selectedRoom.selectedItems.includes(newSelected))
                 return state
 

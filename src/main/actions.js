@@ -69,8 +69,11 @@ export const removeFromSelection = (itemId) => ({
 })
 
 export const DELETE_SELECTION = 'DELETE_SELECTION'
-export const deleteSelection = () => ({
-    type: DELETE_SELECTION
+export const deleteSelection = (deletedItems) => ({
+    type: DELETE_SELECTION,
+    payload: {
+        deletedItems
+    }
 })
 
 export const LOADING_ROOMS = 'LOADING_ROOMS'

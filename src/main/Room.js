@@ -69,7 +69,7 @@ function Room({ title, room, onAddPressed, onSelectPressed, selectionOngoing, on
             </ItemsWrapper>
             <SelectionBar selectionOngoing={selectionOngoing}>
                 <span style={{margin: 'auto 0', fontWeight: 'bolder'}}>{ selectionLength } items selected</span>
-                <CancelButton style={{marginLeft: 'auto'}} onClick={onSelectionCancel}>Cancel</CancelButton>
+                <CancelButton style={{marginLeft: 'auto'}} onClick={() => onSelectionCancel()}>Cancel</CancelButton>
             </SelectionBar>
         </RoomContainer>
     )
@@ -78,7 +78,7 @@ function Room({ title, room, onAddPressed, onSelectPressed, selectionOngoing, on
 const mapStateToProps = (state) => ({
     room: state.rooms.selectedRoom,
     selectionLength: state.rooms.selectedRoom.selectedItems.length,
-    selectionOngoing: state.rooms.selectedRoom.selectionOngoing
+    selectionOngoing: state.rooms.selectedRoom.selectingItems
 })
 
 const mapDispatchToProps = (dispatch) => ({
