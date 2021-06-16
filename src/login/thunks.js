@@ -22,6 +22,7 @@ export const login = (username, password) => async(dispatch, getState) => {
         console.log('Login successful')
     } catch(err) {
         dispatch(loginFailure(err))
-        console.log(err)
+        alert('Bad credentials. Please try again');
+        //console.log(err)
     }
 }

@@ -10,7 +10,6 @@ export const ButtonTemplate = styled.button`
   border-radius: 5px;
   box-shadow: #121212 0 0 6px;
   
-  flex: 0 1 130px;
   height: min-content;
   font-weight: bolder;
 
@@ -18,6 +17,7 @@ export const ButtonTemplate = styled.button`
 `
 
 export const Button = styled(ButtonTemplate)`
+  flex: 0 1 130px;
   background-color: #1D3240;
   :hover {
     background-color: #203B4E;
@@ -25,6 +25,7 @@ export const Button = styled(ButtonTemplate)`
 `
 
 export const AddButton = styled(ButtonTemplate)`
+  flex: 0 1 130px;
   background-color: #467C46;
   :hover {
     background-color: #417341;
@@ -32,6 +33,7 @@ export const AddButton = styled(ButtonTemplate)`
 `
 
 export const CancelButton = styled(ButtonTemplate)`
+  flex: 0 1 130px;
   background-color: darkred;
   :hover {
     background-color: red;
@@ -39,7 +41,7 @@ export const CancelButton = styled(ButtonTemplate)`
 `
 
 export const Input = styled.input`
-  padding: 15px;
+  padding: 10px;
   margin-bottom: 10px;
   
   outline: #A3C8FF;

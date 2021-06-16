@@ -1,7 +1,7 @@
 import {
     LOGIN_ATTEMPT,
     LOGIN_SUCCESS,
-    LOGIN_FAILURE
+    LOGIN_FAILURE, LOGOUT
 } from './actions'
 
 const initialState = {
@@ -36,6 +36,9 @@ export const user = (state = initialState, action) => {
                 loading: false,
                 success: false
             }
+        }
+        case LOGOUT: {
+            return {}
         }
         default: {
             return state;

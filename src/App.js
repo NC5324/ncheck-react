@@ -5,6 +5,7 @@ import { Switch, Route, Redirect } from 'react-router-dom'
 import Login from './login/LoginPage'
 import Main from './main/MainPage'
 import { connect } from 'react-redux'
+import SettingsPage from './settings/SettingsPage'
 
 const AppContainer = styled.div`  
   display: flex;
@@ -28,6 +29,9 @@ function App({ loggedIn }) {
               </Route>
               <Route path="/rooms">
                   { loggedIn ? <Main/> : <Redirect to={"/"}/> }
+              </Route>
+              <Route path="/settings">
+                  { loggedIn ? <SettingsPage/> : <Redirect to={"/"}/> }
               </Route>
           </Switch>
       </AppContainer>

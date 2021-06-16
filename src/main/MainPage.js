@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, useHistory } from 'react-router-dom'
 import styled from 'styled-components'
 import RoomList from './RoomList'
 import Room from './Room'
@@ -34,6 +34,8 @@ const Avatar = styled.div`
 
 
 const MainPage = () => {
+    const history = useHistory()
+
     return (
         <div className={"wrapper"}>
             <Wrapper>
@@ -50,7 +52,7 @@ const MainPage = () => {
             <AccFooter>
                 <Avatar/>
                 <h3 style={{margin: 'auto 10px'}}>NC5324</h3>
-                <Button style={{marginLeft: 'auto'}}>SETTINGS</Button>
+                <Button style={{marginLeft: 'auto'}} onClick={() => history.push("/settings")}>SETTINGS</Button>
             </AccFooter>
             <NewRoomForm/>
             <NewItemForm/>
