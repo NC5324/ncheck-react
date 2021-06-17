@@ -54,7 +54,7 @@ const Avatar = styled.div`
   margin: auto 5px;
 `
 
-function SettingsPage({ currentUser }) {
+function SettingsPage({ currentUser, settingsArray }) {
     const history = useHistory()
     return (
         <SettingsPageWrapper>
@@ -66,7 +66,7 @@ function SettingsPage({ currentUser }) {
                     }}>X</Button>
                 </div>
                 <SettingsContainer>
-                    <SettingsNav/>
+                    <SettingsNav settingsArray={settingsArray}/>
                 </SettingsContainer>
             </SettingsWrapper>
             <AccFooter>

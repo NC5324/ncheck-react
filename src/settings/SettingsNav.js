@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { Button } from '../ui-components'
 import SettingsForm from './SettingsForm'
-import { useHistory } from 'react-router-dom'
+import { useHistory, Route, Switch } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { logout } from '../login/actions'
 
@@ -21,22 +21,7 @@ const SettingsNavItem = styled(Button)`
   margin: 0 0 5px;
 `
 
-const testArr = [
-    {
-        title: 'PROFILE SETTINGS',
-        path: '/settings'
-    },
-    {
-        title: 'CHANGE PASSWORD',
-        path: '/settings/password'
-    },
-    // {
-    //     title: 'LOGOUT',
-    //     path: '/'
-    // }
-]
-
-function SettingsNav({settingsArray = testArr, onLogoutPressed}) {
+function SettingsNav({settingsArray, onLogoutPressed}) {
     const history = useHistory()
     return (
         <>
@@ -45,12 +30,24 @@ function SettingsNav({settingsArray = testArr, onLogoutPressed}) {
                     <SettingsNavItem key={`settings-${i}`} onClick={() => history.push(settings.path)}>
                         { settings.title }
                     </SettingsNavItem>))}
-                <SettingsNavItem onClick={() => {
-                    onLogoutPressed()
-                    history.push('/')
-                }}>
-                    LOGOUT
-                </SettingsNavItem>
+                <Switch>
+                    <Route path={"/settings"}>
+                        <SettingsNavItem onClick={() => {
+                            onLogoutPressed()
+                            history.push('/')
+                        }}>
+                            LOGOUT
+                        </SettingsNavItem>
+                    </Route>
+                    <Route path={"/room-settings"}>
+                        <SettingsNavItem onClick={() => {
+                            //TODO: Add room deletion stuff
+                            history.push('/rooms')
+                        }}>
+                            DELETE ROOM
+                        </SettingsNavItem>
+                    </Route>
+                </Switch>
             </SettingsNavContainer>
             <SettingsForm/>
         </>

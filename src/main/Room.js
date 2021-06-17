@@ -1,10 +1,10 @@
-// import { useParams } from 'react-router-dom'
 import { AddButton, Button, CancelButton } from '../ui-components'
 import React from 'react'
 import styled from 'styled-components'
 import RoomItem from './RoomItem'
 import { connect } from 'react-redux'
 import { addToSelection, beginSelection, cancelSelection, creatingItem } from './actions'
+import { useHistory } from 'react-router-dom'
 
 const ItemsWrapper = styled.main`
   max-height: 100%;
@@ -45,33 +45,35 @@ const SelectionBar = styled.div`
 `
 
 function Room({ title, room, onAddPressed, onSelectPressed, selectionOngoing, onSelectionAdded, selectionLength, onSelectionCancel }) {
-    // let { id } = useParams();
+    const history = useHistory();
     return (
-        <RoomContainer>
-            <header style={{
-                display: 'flex',
-                marginBottom: 10
-            }}>
-                <h1 className={"opacity-87"}>{ title ? title : room.name }</h1>
-                <AddButton style={{marginLeft: 'auto'}}
-                           onClick={() => onAddPressed()}>ADD</AddButton>
-                <Button style={{marginLeft: '10px'}}
-                        onClick={() => onSelectPressed()}>SELECT</Button>
-                <Button style={{marginLeft: '10px'}}>o o o</Button>
-            </header>
-            <ItemsWrapper>
-                { room.items.map(item =>
-                    <RoomItem key={`item-${item.id}`}
-                              onSelect={onSelectionAdded}
-                              item={item}
-                    />)
-                }
-            </ItemsWrapper>
-            <SelectionBar selectionOngoing={selectionOngoing}>
-                <span style={{margin: 'auto 0', fontWeight: 'bolder'}}>{ selectionLength } items selected</span>
-                <CancelButton style={{marginLeft: 'auto'}} onClick={() => onSelectionCancel()}>Cancel</CancelButton>
-            </SelectionBar>
-        </RoomContainer>
+        <>
+            <RoomContainer>
+                <header style={{
+                    display: 'flex',
+                    marginBottom: 10
+                }}>
+                    <h1 className={"opacity-87"}>{ title ? title : room.name }</h1>
+                    <AddButton style={{marginLeft: 'auto'}}
+                               onClick={() => onAddPressed()}>ADD</AddButton>
+                    <Button style={{marginLeft: '10px'}}
+                            onClick={() => onSelectPressed()}>SELECT</Button>
+                    <Button style={{marginLeft: '10px'}} onClick={() => history.push('/room-settings')}>o o o</Button>
+                </header>
+                <ItemsWrapper>
+                    { room.items.map(item =>
+                        <RoomItem key={`item-${item.id}`}
+                                  onSelect={onSelectionAdded}
+                                  item={item}
+                        />)
+                    }
+                </ItemsWrapper>
+                <SelectionBar selectionOngoing={selectionOngoing}>
+                    <span style={{margin: 'auto 0', fontWeight: 'bolder'}}>{ selectionLength } items selected</span>
+                    <CancelButton style={{marginLeft: 'auto'}} onClick={() => onSelectionCancel()}>Cancel</CancelButton>
+                </SelectionBar>
+            </RoomContainer>
+        </>
     )
 }
 

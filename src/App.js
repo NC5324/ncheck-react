@@ -20,6 +20,28 @@ const AppContainer = styled.div`
   position: relative;
 `
 
+const profileSettings = [
+    {
+        title: 'PROFILE SETTINGS',
+        path: '/settings'
+    },
+    {
+        title: 'CHANGE PASSWORD',
+        path: '/settings/password'
+    },
+]
+
+const roomSettings = [
+    {
+        title: 'ROOM SETTINGS',
+        path: '/room-settings'
+    },
+    {
+        title: 'ROOM MEMBERS',
+        path: '/room-settings/members'
+    },
+]
+
 function App({ loggedIn }) {
   return (
       <AppContainer>
@@ -31,7 +53,10 @@ function App({ loggedIn }) {
                   { loggedIn ? <Main/> : <Redirect to={"/"}/> }
               </Route>
               <Route path="/settings">
-                  { loggedIn ? <SettingsPage/> : <Redirect to={"/"}/> }
+                  { loggedIn ? <SettingsPage settingsArray={profileSettings}/> : <Redirect to={"/"}/> }
+              </Route>
+              <Route exact path={`/room-settings`}>
+                  { loggedIn ? <SettingsPage settingsArray={roomSettings}/> : <Redirect to={"/"}/> }
               </Route>
           </Switch>
       </AppContainer>
