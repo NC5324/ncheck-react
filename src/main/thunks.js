@@ -4,7 +4,7 @@ import {
     loadingRoomsFailure,
     creatingRoomFailure,
     creatingRoomSuccess,
-    creatingRoom, creatingItemSuccess, creatingItemFailure
+    creatingItemSuccess, creatingItemFailure
 } from './actions'
 import Room from '../payload/Room'
 import Item from '../payload/Item'

@@ -40,7 +40,7 @@ const RoomsWrapper = styled.div`
 function RoomList({ rooms, startLoadingRooms, loadingRooms, onAddPressed }) {
     useEffect(() => {
         startLoadingRooms(5)
-    }, [])
+    }, [startLoadingRooms])
 
     const loadingMessage = (
         <div style={{

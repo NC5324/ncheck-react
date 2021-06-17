@@ -3,7 +3,6 @@ import styled from 'styled-components'
 import { Button } from '../ui-components'
 import SettingsForm from './SettingsForm'
 import { useHistory } from 'react-router-dom'
-import { login } from '../login/thunks'
 import { connect } from 'react-redux'
 import { logout } from '../login/actions'
 

@@ -7,6 +7,7 @@ import { Button } from '../ui-components'
 import './MainPage.css'
 import NewRoomForm from './NewRoomForm'
 import NewItemForm from './NewItemForm'
+import { connect } from 'react-redux'
 
 const Wrapper = styled.div`
   display: flex;
@@ -33,7 +34,7 @@ const Avatar = styled.div`
 `
 
 
-const MainPage = () => {
+const MainPage = ({ currentUser }) => {
     const history = useHistory()
 
     return (
@@ -51,7 +52,7 @@ const MainPage = () => {
             </Wrapper>
             <AccFooter>
                 <Avatar/>
-                <h3 style={{margin: 'auto 10px'}}>NC5324</h3>
+                <h3 style={{margin: 'auto 10px'}}>{ currentUser.username.toLocaleUpperCase() }</h3>
                 <Button style={{marginLeft: 'auto'}} onClick={() => history.push("/settings")}>SETTINGS</Button>
             </AccFooter>
             <NewRoomForm/>
@@ -60,4 +61,12 @@ const MainPage = () => {
     )
 }
 
-export default MainPage
+const mapStateToProps = (state) => ({
+    currentUser: state.user
+})
+
+const mapDispatchToProps = (dispatch) => ({
+
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(MainPage)

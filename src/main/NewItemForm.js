@@ -2,9 +2,8 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import { AddButton, CancelButton, Input, InputLabel } from '../ui-components'
 import { connect } from 'react-redux'
-import { creatingItemFailure, creatingItemSuccess, creatingRoomFailure } from './actions'
-import { addItemToRoom, createRoom } from './thunks'
-import Room from '../payload/Room'
+import { creatingItemFailure } from './actions'
+import { addItemToRoom } from './thunks'
 import Item from '../payload/Item'
 
 const FormWrapper = styled.div`

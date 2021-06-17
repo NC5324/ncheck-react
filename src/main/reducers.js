@@ -2,7 +2,6 @@ import {
     CREATING_ROOM,
     CREATING_ROOM_SUCCESS,
     CREATING_ROOM_FAILURE,
-    ADD_ROOM_ITEM,
     SELECT_ROOM,
     BEGIN_SELECTION,
     CANCEL_SELECTION,
@@ -16,7 +15,6 @@ import {
     CREATING_ITEM_SUCCESS,
     CREATING_ITEM_FAILURE
 } from './actions'
-import Room from '../payload/Room'
 import RoomsState from '../store/RoomsState'
 
 const initialState = new RoomsState()

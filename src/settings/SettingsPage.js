@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import SettingsNav from './SettingsNav'
 import { Button } from '../ui-components'
 import { useHistory } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 const SettingsPageWrapper = styled.div`
   display: flex;
@@ -53,7 +54,7 @@ const Avatar = styled.div`
   margin: auto 5px;
 `
 
-function SettingsPage() {
+function SettingsPage({ currentUser }) {
     const history = useHistory()
     return (
         <SettingsPageWrapper>
@@ -70,11 +71,19 @@ function SettingsPage() {
             </SettingsWrapper>
             <AccFooter>
                 <Avatar/>
-                <h3 style={{margin: 'auto 10px'}}>NC5324</h3>
+                <h3 style={{margin: 'auto 10px'}}> { currentUser.username.toLocaleUpperCase() } </h3>
                 <Button style={{marginLeft: 'auto'}}>SETTINGS</Button>
             </AccFooter>
         </SettingsPageWrapper>
     )
 }
 
-export default SettingsPage
+const mapStateToProps = (state) => ({
+    currentUser: state.user
+})
+
+const mapDispatchToProps = (dispatch) => ({
+
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsPage)
