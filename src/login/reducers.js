@@ -3,6 +3,11 @@ import {
     LOGIN_SUCCESS,
     LOGIN_FAILURE, LOGOUT
 } from './actions'
+import {
+    UPDATING_USER_DETAILS,
+    UPDATING_USER_DETAILS_FAILURE,
+    UPDATING_USER_DETAILS_SUCCESS
+} from '../settings/actions'
 
 const initialState = {
     jwt: null,
@@ -40,6 +45,28 @@ export const user = (state = initialState, action) => {
         case LOGOUT: {
             return {}
         }
+        case UPDATING_USER_DETAILS: {
+            return {
+                ...state,
+                loading: true
+            }
+        }
+        case UPDATING_USER_DETAILS_SUCCESS: {
+            const { username, jwt } = payload
+            return {
+                ...state,
+                username: username,
+                jwt: jwt,
+                loading: false,
+            }
+        }
+        case UPDATING_USER_DETAILS_FAILURE: {
+            return {
+                ...state,
+                loading: false
+            }
+        }
+
         default: {
             return state;
         }

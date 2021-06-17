@@ -42,8 +42,8 @@ function SettingsNav({settingsArray = testArr, onLogoutPressed}) {
     return (
         <>
             <SettingsNavContainer>
-                { settingsArray.map(settings => (
-                    <SettingsNavItem onClick={() => history.push(settings.path)}>
+                { settingsArray.map((settings, i) => (
+                    <SettingsNavItem key={`settings-${i}`} onClick={() => history.push(settings.path)}>
                         { settings.title }
                     </SettingsNavItem>))}
                 <SettingsNavItem onClick={() => {

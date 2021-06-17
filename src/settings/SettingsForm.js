@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { AddButton, CancelButton, Input, InputLabel } from '../ui-components'
 import Room from '../payload/Room'
 import { Route, Switch } from 'react-router-dom'
+import ProfileSettings from './ProfileSettings'
 
 const SettingsFormContainer = styled.div`
   display: flex;
@@ -39,19 +40,7 @@ function SettingsForm() {
         <SettingsFormContainer>
             <Switch>
                 <Route exact path="/settings">
-                    <Avatar/>
-                    <InputLabel htmlFor="in-new-username">New username:</InputLabel>
-                    <Input id="in-new-username"/>
-                    <InputLabel htmlFor="in-current-pw">Current password:</InputLabel>
-                    <Input id="in-repeat-pw"/>
-                    <InputLabel htmlFor="in-repeat-pw">Repeat current password:</InputLabel>
-                    <Input id="in-repeat-pw"/>
-                    <ButtonsWrapper>
-                        <AddButton style={{marginRight: 5}}>
-                            Submit
-                        </AddButton>
-                        <CancelButton>Cancel</CancelButton>
-                    </ButtonsWrapper>
+                    <ProfileSettings/>
                 </Route>
                 <Route exact path="/settings/password">
                     <InputLabel htmlFor="in-repeat-new-pw">New password:</InputLabel>
@@ -59,8 +48,6 @@ function SettingsForm() {
                     <InputLabel htmlFor="in-repeat-new-pw">Repeat new password:</InputLabel>
                     <Input id="in-repeat-new-pw"/>
                     <InputLabel htmlFor="in-current-pw">Current password:</InputLabel>
-                    <Input id="in-repeat-pw"/>
-                    <InputLabel htmlFor="in-repeat-pw">Repeat current password:</InputLabel>
                     <Input id="in-repeat-pw"/>
                     <ButtonsWrapper>
                         <AddButton style={{marginRight: 5}}>
