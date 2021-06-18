@@ -2,6 +2,7 @@ import {
     CREATING_ROOM,
     CREATING_ROOM_SUCCESS,
     CREATING_ROOM_FAILURE,
+    DELETING_ROOM_SUCCESS,
     SELECT_ROOM,
     BEGIN_SELECTION,
     CANCEL_SELECTION,
@@ -16,6 +17,7 @@ import {
     CREATING_ITEM_FAILURE
 } from './actions'
 import RoomsState from '../store/RoomsState'
+import { UPDATING_ROOM_SUCCESS } from '../settings/actions'
 
 const initialState = new RoomsState()
 
@@ -71,6 +73,13 @@ export const rooms = (state = initialState, action) => {
             return {
                 ...state,
                 creatingRoom: false
+            }
+        }
+        case DELETING_ROOM_SUCCESS: {
+            const { room } = payload
+            return {
+                ...state,
+                rooms: state.rooms.filter(r => r.id !== room.id)
             }
         }
         case CREATING_ITEM: {
@@ -165,6 +174,14 @@ export const rooms = (state = initialState, action) => {
                 ...state,
                 rooms: state.rooms.map(room => room.id === updatedRoom.id  ? updatedRoom : room),
                 selectedRoom: updatedRoom
+            }
+        }
+        case UPDATING_ROOM_SUCCESS: {
+            const { room } = payload
+            return {
+                ...state,
+                rooms: state.rooms.map(r =>  r.id === room.id ? room : r),
+                selectedRoom: room
             }
         }
         default: {

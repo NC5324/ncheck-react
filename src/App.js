@@ -31,17 +31,6 @@ const profileSettings = [
     },
 ]
 
-const roomSettings = [
-    {
-        title: 'ROOM SETTINGS',
-        path: '/room-settings'
-    },
-    {
-        title: 'ROOM MEMBERS',
-        path: '/room-settings/members'
-    },
-]
-
 function App({ loggedIn }) {
   return (
       <AppContainer>
@@ -55,8 +44,8 @@ function App({ loggedIn }) {
               <Route exact path="/settings">
                   { loggedIn ? <SettingsPage settingsArray={profileSettings}/> : <Redirect to={"/"}/> }
               </Route>
-              <Route exact path={`/rooms/:roomId/settings`}>
-                  { loggedIn ? <SettingsPage settingsArray={roomSettings}/> : <Redirect to={"/"}/> }
+              <Route path={`/rooms/:roomId/settings`}>
+                  { loggedIn ? <SettingsPage settingsArray={[]}/> : <Redirect to={"/"}/> }
               </Route>
           </Switch>
       </AppContainer>

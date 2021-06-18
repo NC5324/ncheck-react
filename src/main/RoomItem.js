@@ -18,7 +18,7 @@ function RoomItem({item, onSelect}) {
     return (
         <RoomItemContainer onClick={() => onSelect(item.id)}>
             <h3 className={"opacity-87"}>{item.name}</h3>
-            <h4 className={"opacity-30"}>Created on dd/mm/yyyy by {item["createdBy"].username.toUpperCase()}</h4>
+            <h4 className={"opacity-30"}>Created on dd/mm/yyyy</h4>
             <h4 style={{marginTop: 'auto', marginBottom: 'auto'}}>Notes lorem ipsum dolor sit amet something</h4>
             <h4 style={{color: '#FF7070', marginTop: 'auto'}}>Deadline: dd/mm/yyyy</h4>
         </RoomItemContainer>

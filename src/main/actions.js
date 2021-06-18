@@ -24,6 +24,24 @@ export const creatingRoomFailure = () => ({
     type: CREATING_ROOM_FAILURE
 })
 
+export const DELETING_ROOM = 'DELETING_ROOM'
+export const deletingRoom = () => ({
+    type: DELETING_ROOM
+})
+
+export const DELETING_ROOM_SUCCESS = 'DELETING_ROOM_SUCCESS'
+export const deletingRoomSuccess = (room) => ({
+    type: DELETING_ROOM_SUCCESS,
+    payload: {
+        room
+    }
+})
+
+export const DELETING_ROOM_FAILURE = 'DELETING_ROOM_FAILURE'
+export const deletingRoomFailure = () => ({
+    type: DELETING_ROOM_FAILURE
+})
+
 export const CREATING_ITEM = 'CREATING_ITEM'
 export const creatingItem = () => ({
     type: CREATING_ITEM

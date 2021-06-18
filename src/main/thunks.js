@@ -4,7 +4,7 @@ import {
     loadingRoomsFailure,
     creatingRoomFailure,
     creatingRoomSuccess,
-    creatingItemSuccess, creatingItemFailure
+    creatingItemSuccess, creatingItemFailure, deletingRoomSuccess, selectRoom
 } from './actions'
 import Room from '../payload/Room'
 import Item from '../payload/Item'
@@ -41,7 +41,8 @@ export const createRoom = (room) => async(dispatch, getState) => {
             },
             body: JSON.stringify({
                 name: room.name,
-                owner: 5, // Hard-coded owner because participants of a room are not stored in state yet
+                owner: 5,
+                participants: [5], // Hard-coded members because id is not stored in user state
                 items: room.items.map(item => item.id)
             })
         })
@@ -88,7 +89,8 @@ export const deleteRoom = (roomId) => async(dispatch, getState) => {
         })
 
         const del = await response.json()
-        alert('Deleted room with ID: '+roomId)
+        dispatch(deletingRoomSuccess(new Room(del.data.id, del.data.name, del.data.items)))
+        dispatch(selectRoom(getState().rooms.rooms[0].id))
     } catch(err) {
         alert(err)
     }

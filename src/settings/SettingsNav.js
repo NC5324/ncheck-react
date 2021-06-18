@@ -43,6 +43,11 @@ function SettingsNav({ settingsArray, onLogoutPressed, onDeletePressed }) {
                     </Route>
                     <Route path={"/rooms/:roomId/settings"}>
                         <SettingsNavItem onClick={() => {
+                            history.push(`/rooms/${roomId}/settings/members`)
+                        }}>
+                            ROOM MEMBERS
+                        </SettingsNavItem>
+                        <SettingsNavItem onClick={() => {
                             //TODO: Add room deletion stuff
                             onDeletePressed(roomId)
                             history.push('/room')

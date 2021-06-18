@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { Route, Switch } from 'react-router-dom'
 import ProfileSettings from './ProfileSettings'
 import PasswordSettings from './PasswordSettings'
+import RoomSettings from './RoomSettings'
 
 const SettingsFormContainer = styled.div`
   display: flex;
@@ -29,6 +30,9 @@ function SettingsForm() {
                 </Route>
                 <Route path="/setting/password">
                     <PasswordSettings/>
+                </Route>
+                <Route path="/rooms/:roomId/settings">
+                    <RoomSettings/>
                 </Route>
             </Switch>
         </SettingsFormContainer>
