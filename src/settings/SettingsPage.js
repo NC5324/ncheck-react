@@ -62,7 +62,7 @@ function SettingsPage({ currentUser, settingsArray }) {
                 <div style={{display: 'flex'}}>
                     <h1>Settings</h1>
                     <Button style={{marginLeft: 'auto'}} onClick={() => {
-                        history.push("/rooms")
+                        history.push("/room")
                     }}>X</Button>
                 </div>
                 <SettingsContainer>

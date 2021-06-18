@@ -80,7 +80,7 @@ const Login = ({ onLoginPressed, loginSuccess }) => {
                     ev.preventDefault()
                     await onLoginPressed(username, password)
                     if (loginSuccess) {
-                        history.push("/rooms")
+                        history.push("/room")
                     }
                 }}>Login</LoginButton>
             </LoginFormContent>

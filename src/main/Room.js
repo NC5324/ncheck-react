@@ -58,7 +58,7 @@ function Room({ title, room, onAddPressed, onSelectPressed, selectionOngoing, on
                                onClick={() => onAddPressed()}>ADD</AddButton>
                     <Button style={{marginLeft: '10px'}}
                             onClick={() => onSelectPressed()}>SELECT</Button>
-                    <Button style={{marginLeft: '10px'}} onClick={() => history.push('/room-settings')}>o o o</Button>
+                    <Button style={{marginLeft: '10px'}} onClick={() => history.push(`/rooms/${room.id}/settings`)}>o o o</Button>
                 </header>
                 <ItemsWrapper>
                     { room.items.map(item =>

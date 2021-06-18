@@ -47,15 +47,15 @@ function App({ loggedIn }) {
       <AppContainer>
           <Switch>
               <Route exact path="/">
-                  { loggedIn ? <Redirect to={"/rooms"}/> : <Login/>}
+                  { loggedIn ? <Redirect to={"/room"}/> : <Login/>}
               </Route>
-              <Route path="/rooms">
+              <Route path="/room">
                   { loggedIn ? <Main/> : <Redirect to={"/"}/> }
               </Route>
-              <Route path="/settings">
+              <Route exact path="/settings">
                   { loggedIn ? <SettingsPage settingsArray={profileSettings}/> : <Redirect to={"/"}/> }
               </Route>
-              <Route exact path={`/room-settings`}>
+              <Route exact path={`/rooms/:roomId/settings`}>
                   { loggedIn ? <SettingsPage settingsArray={roomSettings}/> : <Redirect to={"/"}/> }
               </Route>
           </Switch>

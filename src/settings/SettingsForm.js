@@ -27,7 +27,7 @@ function SettingsForm() {
                 <Route exact path="/settings">
                     <ProfileSettings/>
                 </Route>
-                <Route exact path="/settings/password">
+                <Route path="/setting/password">
                     <PasswordSettings/>
                 </Route>
             </Switch>

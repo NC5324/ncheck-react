@@ -54,7 +54,7 @@ function RoomList({ rooms, startLoadingRooms, loadingRooms, onAddPressed }) {
             <Heading>My rooms</Heading>
             <RoomsWrapper>
                 { rooms.map(room => (
-                    <Link to={`/rooms/${room.id}`}
+                    <Link to={`/room/${room.id}`}
                           style={{textDecoration: 'none'}}
                           key={`room-${room.id}`}>
                         <RoomListItem room={room}/>

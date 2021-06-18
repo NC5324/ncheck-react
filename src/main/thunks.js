@@ -77,3 +77,19 @@ export const addItemToRoom = (item, room) => async(dispatch, getState) => {
         alert(err)
     }
 }
+
+export const deleteRoom = (roomId) => async(dispatch, getState) => {
+    try {
+        const response = await fetch(`http://localhost:8080/api/rooms/delete?id=${roomId}`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': 'Bearer ' + getState().user.jwt
+            }
+        })
+
+        const del = await response.json()
+        alert('Deleted room with ID: '+roomId)
+    } catch(err) {
+        alert(err)
+    }
+}

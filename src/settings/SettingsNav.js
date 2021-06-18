@@ -2,9 +2,10 @@ import React from 'react'
 import styled from 'styled-components'
 import { Button } from '../ui-components'
 import SettingsForm from './SettingsForm'
-import { useHistory, Route, Switch } from 'react-router-dom'
+import { useHistory, Route, Switch, useParams } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { logout } from '../login/actions'
+import { deleteRoom } from '../main/thunks'
 
 const SettingsNavContainer = styled.div`
   display: flex;
@@ -21,8 +22,9 @@ const SettingsNavItem = styled(Button)`
   margin: 0 0 5px;
 `
 
-function SettingsNav({settingsArray, onLogoutPressed}) {
+function SettingsNav({ settingsArray, onLogoutPressed, onDeletePressed }) {
     const history = useHistory()
+    const { roomId } = useParams()
     return (
         <>
             <SettingsNavContainer>
@@ -31,7 +33,7 @@ function SettingsNav({settingsArray, onLogoutPressed}) {
                         { settings.title }
                     </SettingsNavItem>))}
                 <Switch>
-                    <Route path={"/settings"}>
+                    <Route exact path={"/settings"}>
                         <SettingsNavItem onClick={() => {
                             onLogoutPressed()
                             history.push('/')
@@ -39,10 +41,11 @@ function SettingsNav({settingsArray, onLogoutPressed}) {
                             LOGOUT
                         </SettingsNavItem>
                     </Route>
-                    <Route path={"/room-settings"}>
+                    <Route path={"/rooms/:roomId/settings"}>
                         <SettingsNavItem onClick={() => {
                             //TODO: Add room deletion stuff
-                            history.push('/rooms')
+                            onDeletePressed(roomId)
+                            history.push('/room')
                         }}>
                             DELETE ROOM
                         </SettingsNavItem>
@@ -59,7 +62,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    onLogoutPressed: () => dispatch(logout())
+    onLogoutPressed: () => dispatch(logout()),
+    onDeletePressed: (roomId) => dispatch(deleteRoom(roomId))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsNav)
