@@ -4,15 +4,6 @@ import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { editPassword } from './thunks'
 
-const Avatar = styled.div`
-  background-color: #A3C8FF;
-  height: 180px;
-  width: 180px;
-  border-radius: 50%;
-  
-  margin-bottom: 10px;
-`
-
 const ButtonsWrapper = styled.div`
   display: flex;
   flex-flow: row wrap;
@@ -24,7 +15,6 @@ function PasswordSettings({ isLoading, currentUser, onSubmitPressed }) {
     const [currPassword, setCurrPassword] = useState("")
     const content = (
         <>
-            <Avatar/>
             <InputLabel htmlFor="in-new-pw">New password:</InputLabel>
             <Input id="in-new-pw" onChange={(ev) => setPassword(ev.currentTarget.value)}/>
             <InputLabel htmlFor="in-repeat-new-pw">Repeat new password:</InputLabel>

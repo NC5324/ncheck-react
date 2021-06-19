@@ -3,9 +3,12 @@ import { AddButton, CancelButton, Input, InputLabel } from '../ui-components'
 import styled from 'styled-components'
 import { connect } from 'react-redux'
 import { editUser } from './thunks'
+import { selectingFileSuccess } from './actions'
 
 const Avatar = styled.div`
   background-color: #A3C8FF;
+  background-position: center 100%;
+  background-size: cover;
   height: 180px;
   width: 180px;
   border-radius: 50%;
@@ -18,13 +21,25 @@ const ButtonsWrapper = styled.div`
   flex-flow: row wrap;
 `
 
-function ProfileSettings({ isLoading, currentUser, onSubmitPressed }) {
+function ProfileSettings({ isLoading, currentUser, onSubmitPressed, onFileSelected }) {
     const [username, setUsername] = useState("")
     const [usernameRepeat, setUsernameRepeat] = useState("")
     const [password, setPassword] = useState("")
     const content = (
         <>
-            <Avatar/>
+            <Avatar id={"user-avatar"}>
+                <input type={"file"} accept={"image/*"} onChange={async function (ev){
+                    const file = ev.currentTarget.files[0]
+                    if(file) {
+                        const reader = new FileReader()
+                        reader.readAsDataURL(file)
+                        reader.onloadend = () => {
+                            onFileSelected(file)
+                            document.getElementById("user-avatar").style.backgroundImage = `url("${reader.result}")`
+                        }
+                    }
+                }}/>
+            </Avatar>
             <InputLabel htmlFor="in-new-username">New username:</InputLabel>
             <Input id="in-new-username" onChange={(ev) => setUsername(ev.currentTarget.value)}/>
             <InputLabel htmlFor="in-repeat-username">Repeat new username:</InputLabel>
@@ -69,7 +84,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    onSubmitPressed: (request) => dispatch(editUser(request))
+    onSubmitPressed: (request) => dispatch(editUser(request)),
+    onFileSelected: (file) => dispatch(selectingFileSuccess(file))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileSettings)

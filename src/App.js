@@ -41,7 +41,7 @@ function App({ loggedIn }) {
               <Route path="/room">
                   { loggedIn ? <Main/> : <Redirect to={"/"}/> }
               </Route>
-              <Route exact path="/settings">
+              <Route path="/settings">
                   { loggedIn ? <SettingsPage settingsArray={profileSettings}/> : <Redirect to={"/"}/> }
               </Route>
               <Route path={`/rooms/:roomId/settings`}>

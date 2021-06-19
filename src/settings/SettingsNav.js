@@ -33,7 +33,7 @@ function SettingsNav({ settingsArray, onLogoutPressed, onDeletePressed }) {
                         { settings.title }
                     </SettingsNavItem>))}
                 <Switch>
-                    <Route exact path={"/settings"}>
+                    <Route path={"/settings"}>
                         <SettingsNavItem onClick={() => {
                             onLogoutPressed()
                             history.push('/')

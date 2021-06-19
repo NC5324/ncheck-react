@@ -9,20 +9,37 @@ import Room from '../payload/Room'
 
 export const editUser = (request) => async(dispatch, getState) => {
     const { jwt } = getState().user
+    const { selectedFile } = getState().file
     try {
         dispatch(updatingUserDetails())
+
+        const formData = new FormData()
+        formData.append("id", request.id)
+        formData.append("username", request.username)
+        formData.append("newUsername", request.newUsername)
+        formData.append("password", request.password)
+        formData.append("file", selectedFile)
+
         const response = await fetch('http://localhost:8080/api/settings/user', {
             method: 'POST',
             headers: {
-                'Authorization': 'Bearer ' + jwt,
-                'Content-Type': 'application/json'
+                'Authorization': 'Bearer ' + jwt
             },
-            body: JSON.stringify(request)
+            body: formData
         })
+
         const data = await response.json()
-        if(data.error) {
-            throw new Error("Something went wrong.")
-        }
+        console.log("new user data", data)
+
+        const pic = await fetch(`http://${data['avatarPath']}`, {
+            method: 'GET',
+            mode: 'no-cors',
+            headers: {
+                'Authorization': 'Bearer ' + jwt
+            }
+        })
+        console.log(pic)
+
         dispatch(updatingUserDetailsSuccess(data.jwt, data.username))
         console.log('Edit success')
     } catch(err) {

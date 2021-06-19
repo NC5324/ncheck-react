@@ -6,10 +6,12 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { persistReducer } from 'redux-persist'
 import { rooms } from '../main/reducers'
 import { user } from '../login/reducers'
+import { file } from '../settings/reducers'
 
 const reducers = {
     rooms,
-    user
+    user,
+    file
 }
 
 const persistConfig = {
